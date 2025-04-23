@@ -27,6 +27,11 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
             Category = category;
 
         }
+        public Product Clone()
+        {
+            return new Product(Id, Code, Name, Price, Quantity, Category); 
+        }
 
     }
+
 }

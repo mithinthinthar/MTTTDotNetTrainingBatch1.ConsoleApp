@@ -9,7 +9,7 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
 {
     internal class InventoryService
     {
-        public void CreateProduct ()
+        public void CreateProduct()
         {
             Console.Write("Insert product name: ");
             string insertProductName = Console.ReadLine()!;
@@ -42,7 +42,7 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
 
             Console.WriteLine("Product is successfully added.");
         }
-        public void ViewProduct ()
+        public void ViewProduct()
         {
             Console.WriteLine("Product List:");
             foreach (var product in Data.Products)
@@ -53,21 +53,23 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
 
         public void UpdateProduct()
         {
-            
+
         UpdateProduct:
+
             Console.Write("Enter the Product Code: ");
             string UpdateProduct = Console.ReadLine()!;
 
-            var product = Data.Products.FirstOrDefault(x => x.Code == UpdateProduct);
+            var original = Data.Products.FirstOrDefault(x => x.Code == UpdateProduct);
 
-            if (product is null)
+            if (original is null)
             {
                 Console.WriteLine("The code you enter is not in the product list!");
                 goto UpdateProduct;
             }
             Console.WriteLine("Product Found!");
-            Console.WriteLine($"id: {product.Id}, code: {product.Code}, name: {product.Name}, price: {product.Price}, quantity: {product.Quantity}, Category: Fruit");
+            Console.WriteLine($"id: {original.Id}, code: {original.Code}, name: {original.Name}, price: {original.Price}, quantity: {original.Quantity}, Category: Fruit");
 
+            var product = original.Clone();
         BeforeQuantityUpdate:
             Console.Write("How many do you want to remove?: ");
             string quantity = Console.ReadLine()!;
@@ -78,6 +80,9 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
                 goto BeforeQuantityUpdate;
             }
             product.Quantity -= updateQuantity;
+
+
+
 
             Console.WriteLine("Product Updatated Successfully!");
         }
@@ -96,11 +101,11 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
             Console.WriteLine("Product Found!");
             Console.WriteLine($"id: {product.Id}, code: {product.Code}, name: {product.Name}, price: {product.Price}, quantity: {product.Quantity}, Category: Fruit");
 
-        
+
             Data.Products.Remove(product);
             Console.WriteLine("Product deleted successfully!");
-           
-            
+
+
         }
     }
 }
