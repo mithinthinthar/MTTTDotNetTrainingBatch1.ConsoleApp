@@ -8,7 +8,6 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
 {
     internal class Product
     {
-        public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -17,9 +16,8 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
 
 
 
-        public Product(int id, string code, string name, decimal price, int quantity, string category)
+        public Product( string code, string name, decimal price, int quantity, string category)
         {
-            Id = id;
             Code = code;
             Name = name;
             Price = price;
@@ -29,7 +27,7 @@ namespace MTTTDotNetTrainingBatch1.ConsoleApp
         }
         public Product Clone()
         {
-            return new Product(Id, Code, Name, Price, Quantity, Category); 
+            return new Product( Code, Name, Price, Quantity, Category); 
         }
 
     }
